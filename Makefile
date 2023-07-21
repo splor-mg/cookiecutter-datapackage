@@ -7,4 +7,4 @@ render:
 	mkdocs build
 
 publish:
-	mkdocs gh-deploy
+	mike deploy --push --update-aliases $(version) $(alias)
