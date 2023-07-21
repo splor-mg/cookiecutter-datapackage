@@ -1,28 +1,25 @@
-# cookiecutter-datapackage
+# {{ cookiecutter.project_slug }}
 
-## Pre-requisites
+[![Updated](https://github.com/splor-mg/{{ cookiecutter.project_slug }}/actions/workflows/all.yaml/badge.svg)](https://github.com/splor-mg/{{ cookiecutter.project_slug }}/actions/)
 
-- git
-- make
-- Python (with packages `cookiecutter` and `pip-tools`)
-- Docker
+## Pré-requisitos
 
-## Usage
-
-To create 
+Esse projeto utiliza Docker para gerenciamento das dependências. Para fazer _build_  da imagem execute:
 
 ```bash
-cookiecutter /Users/fjunior/Projects/splor/cookiecutter
-project_slug: project
-Creating virtual environment...
-Running pip compile...
-Initializing Git repository...
-Initialized empty Git repository in ~/project/.git/
+docker build --tag {{ cookiecutter.project_slug }} .
 ```
+
+## Uso
+
+Para executar o container
 
 ```bash
-cd ~/project/
-source venv/bin/activate
-pip install -r requirements.txt
+docker run -it --rm --mount type=bind,source=$(PWD),target=/project {{ cookiecutter.project_slug }} bash
 ```
 
+Uma vez dentro do container execute os comandos do make
+
+```bash
+make all
+```

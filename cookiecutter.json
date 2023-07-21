@@ -1,3 +1,4 @@
 {
-    "project_slug": null
+    "project_slug": null,
+    "raw_files_file_extension": ["txt", "xlsx", "xlsm", "xls" ,"html", "csv"]
 }
