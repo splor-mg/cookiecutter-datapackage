@@ -1,6 +1,6 @@
 .PHONY: all extract validate transform build check publish clean
 
-EXT = {{ cookiecutter.raw_files_file_extension }}
+EXT = txt
 RESOURCE_NAMES := $(shell python main.py resources)
 OUTPUT_FILES := $(addsuffix .json,$(addprefix logs/transform/,$(RESOURCE_NAMES)))
 
@@ -23,7 +23,7 @@ datapackage.json: $(OUTPUT_FILES) scripts/build.py datapackage.yaml
 	python main.py build
 
 check:
-	@echo 'No checks implemented...'
+	frictionless validate datapackage.json
 
 publish: 
 	git add -Af datapackage.json data/*.csv data-raw/*.$(EXT)

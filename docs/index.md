@@ -1,26 +1,38 @@
-# Cookiecutter Data Package
+# Intro
 
-Project template for creation of [frictionless data packages](https://frictionlessdata.io/).
+Project template para criação de [frictionless data packages](https://frictionlessdata.io/).
 
-## Installation
+## Requirements
 
-- git
-- make
-- Python (with packages `cookiecutter` and `pip-tools`)
-- Docker (optional)
+Para inicialização do projeto os seguintes softwares são necessários:
 
-## Usage
+- git;
+- make;
+- Python (e pacote `cookiecutter` e `pip-tools`).
 
-To create a new data package run
+Para execução das etapas do processo de ETL é necessário:
+
+- Rstudio & R; ou
+- Docker.
+
+## Quickstart
+
+Para iniciar um novo _data package_ execute:
 
 ```bash
-cookiecutter https://github.com/splor-mg/cookiecutter-datapackage.git
-project_slug: project
+cookiecutter https://github.com/splor-mg/cookiecutter-datapackage
+```
+
+Depois de informar uma _slug_ para o projeto uma nova pasta será inicializada:
+
+```bash
 Creating virtual environment...
 Running pip compile...
 Initializing Git repository...
 Initialized empty Git repository in ~/project/.git/
 ```
+
+Para execução local é necessário a instalação das dependências do python no ambiente virtual do projeto:
 
 ```bash
 cd ~/project/
@@ -28,25 +40,41 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### data extraction
+Você pode testar que tudo funcionou com o comando:
 
-A etapa de extração tende a ser menos genérica que as demais, podendo inclusive ser manual.
+```bash
+make all
+```
 
-### metadata (data package, schemas and dialect)
+Que deve gerar o seguinte resultado:
 
-### transform and build pipeline
+```bash
+python main.py extract fact && python main.py extract dim && true
+2023-07-21T09:18:09-0300 INFO  [scripts.extract] Extract not implemented for resource {resource_name}...
+2023-07-21T09:18:09-0300 INFO  [scripts.extract] Extract not implemented for resource {resource_name}...
+frictionless validate datapackage.yaml
+──────────────────────────────────────────────── Dataset ─────────────────────────────────────────────────
+                   dataset                   
+┏━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┓
+┃ name ┃ type  ┃ path              ┃ status ┃
+┡━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━┩
+│ fact │ table │ data-raw/fact.txt │ VALID  │
+│ dim  │ table │ data-raw/dim.txt  │ VALID  │
+└──────┴───────┴───────────────────┴────────┘
+python main.py transform fact --target-descriptor logs/transform/fact.json
+2023-07-21T09:18:09-0300 INFO  [scripts.transform] Transforming resource fact
+python main.py transform dim --target-descriptor logs/transform/dim.json
+2023-07-21T09:18:10-0300 INFO  [scripts.transform] Transforming resource dim
+python main.py build
+frictionless validate datapackage.json
+─────────────────────────────────────────────────────────── Dataset ────────────────────────────────────────────────────────────
+                   dataset                   
+┏━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┓
+┃ name ┃ type  ┃ path              ┃ status ┃
+┡━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━┩
+│ fact │ table │ data/fact.csv     │ VALID  │
+│ dim  │ table │ data/dim.csv      │ VALID  │
+└──────┴───────┴───────────────────┴────────┘
+```
 
-### scheduled jobs
-
-### validation and checks
-
-### publish
-
-## Maintenance
-
-### Dependencies
-
-### Secrets
-
-- DOCKERHUB_TOKEN
-- DOCKERHUB_USERNAME
+Para entender como customizar o projeto siga o [Tutorial](tutorial.md).
