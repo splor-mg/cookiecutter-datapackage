@@ -5,4 +5,9 @@
          <lastmod>2023-07-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
+    <url>
+         <loc>https://splor-mg.github.io/cookiecutter-datapackage/0.1/tutorial/</loc>
+         <lastmod>2023-07-21</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
 </urlset>
