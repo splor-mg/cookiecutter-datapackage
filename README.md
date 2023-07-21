@@ -1,11 +1,14 @@
 # Cookiecutter Data Package
 
-```
-make publish version=0.1.0 alias=latest
-```
-
-or
+While in development
 
 ```
-make publish version=0.1.0-9000 alias=dev
+make publish version=0.1 alias=dev
+```
+
+after production
+
+```
+make publish version=0.1 alias=latest
+mike set-default --push dev
 ```
