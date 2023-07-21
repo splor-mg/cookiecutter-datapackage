@@ -30,6 +30,8 @@ pip install -r requirements.txt
 
 ### data extraction
 
+A etapa de extração tende a ser menos genérica que as demais, podendo inclusive ser manual.
+
 ### metadata (data package, schemas and dialect)
 
 ### transform and build pipeline
