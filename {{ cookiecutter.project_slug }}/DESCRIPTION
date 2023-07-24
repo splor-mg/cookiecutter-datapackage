@@ -1,0 +1,4 @@
+Package: {{ cookiecutter.project_slug }}
+Imports:
+    renv
+Encoding: UTF-8

@@ -1,0 +1,10 @@
+site_name: Cookiecutter data package
+site_url: https://splor-mg.github.io/cookiecutter-datapackage/
+theme:
+  name: material
+extra:
+  version:
+    provider: mike
+plugins:
+  - mike:
+      version_selector: true
