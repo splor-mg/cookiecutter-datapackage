@@ -23,3 +23,5 @@ Uma vez dentro do container execute os comandos do make
 ```bash
 make all
 ```
+
+_Gerado a partir de [cookiecutter-datapackage@{% gitcommit short=True%}](https://github.com/splor-mg/cookiecutter-datapackage/commit/{% gitcommit %})_

@@ -8,7 +8,7 @@ Para inicialização do projeto os seguintes softwares são necessários:
 
 - git;
 - make;
-- Python (e pacote `cookiecutter` e `pip-tools`).
+- Python (e pacotes `cookiecutter`, `jinja2-git`, e `pip-tools`).
 
 Para execução das etapas do processo de ETL é necessário:
 
