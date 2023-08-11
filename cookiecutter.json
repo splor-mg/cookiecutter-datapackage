@@ -1,3 +1,4 @@
 {
-    "project_slug": null
+    "project_slug": null,
+    "_extensions": ["jinja2_git.GitExtension"]
 }
