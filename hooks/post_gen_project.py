@@ -2,7 +2,7 @@ import subprocess
 
 def pip_compile():
     print('Running pip compile...')
-    subprocess.run(['pip-compile', '--quiet'], check=True)
+    subprocess.run(['python', '-m', 'piptools', 'compile', '--quiet'], check=True)
 
 def create_venv():
     print('Creating virtual environment...')

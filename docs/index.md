@@ -20,7 +20,7 @@ Para execução das etapas do processo de ETL é necessário:
 Para iniciar um novo _data package_ execute:
 
 ```bash
-cookiecutter https://github.com/splor-mg/cookiecutter-datapackage
+python -m cookiecutter https://github.com/splor-mg/cookiecutter-datapackage
 ```
 
 Depois de informar uma _slug_ para o projeto uma nova pasta será inicializada:
@@ -32,12 +32,19 @@ Initializing Git repository...
 Initialized empty Git repository in ~/project/.git/
 ```
 
-Para execução local é necessário a instalação das dependências do python no ambiente virtual do projeto:
+Agora pode ser um bom momento para fazer um commit dos arquivos originais do template:
 
 ```bash
 cd ~/project/
+git add .
+git commit -m "initial commit"
+```
+
+Para execução local é necessário a instalação das dependências do python no ambiente virtual do projeto:
+
+```bash
 source venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 Você pode testar que tudo funcionou com o comando:
