@@ -2,7 +2,7 @@
 
 EXT = txt
 RESOURCE_NAMES := $(shell python main.py resources)
-OUTPUT_FILES := $(addsuffix .json,$(addprefix logs/transform/,$(RESOURCE_NAMES)))
+OUTPUT_FILES := $(addsuffix .csv,$(addprefix data/,$(RESOURCE_NAMES)))
 
 all: extract validate transform build check
 
@@ -14,8 +14,8 @@ validate:
 
 transform: $(OUTPUT_FILES)
 
-$(OUTPUT_FILES): logs/transform/%.json: data-raw/%.$(EXT) schemas/%.yaml scripts/transform.py datapackage.yaml
-	python main.py transform $* --target-descriptor $@
+$(OUTPUT_FILES): data/%.csv: data-raw/%.$(EXT) schemas/%.yaml scripts/transform.py datapackage.yaml
+	python main.py transform $*
 
 build: transform datapackage.json
 
@@ -31,4 +31,4 @@ publish:
 	git push
 
 clean:
-	rm -f datapackage.json data/*.csv logs/transform/*.json
+	rm -f datapackage.json data/*.csv

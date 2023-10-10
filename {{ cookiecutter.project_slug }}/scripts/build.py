@@ -1,12 +1,13 @@
 from frictionless import Package, Resource
 from datetime import datetime
-from scripts.pipelines import build_pipeline
+from dpm.utils import as_identifier
 
-def build_package(source_descriptor: str = 'datapackage.yaml', target_descriptor: str = 'datapackage.json'):
+def build_package(descriptor: str = 'datapackage.yaml'):
     
-    source = Package(source_descriptor)
+    source = Package(descriptor)
 
-    target = Package.from_descriptor({
+    target_descriptor = {
+        "profile": "tabular-data-package",
         "name": source.name,
         "resources": [
             {
@@ -15,20 +16,21 @@ def build_package(source_descriptor: str = 'datapackage.yaml', target_descriptor
             "path": f'data/{resource_name}.csv',
             "format": "csv",
             "encoding": "utf-8",
-            "schema": {"fields": []}
+            "schema": {"fields": [
+                {
+                'name': field.custom['target'] if field.custom.get('target') else as_identifier(field.name),
+                'type': field.type,
+                'source': field.name,
+                } for field in source.get_resource(resource_name).schema.fields                
+            ]}
             } for resource_name in source.resource_names
         ]
-    })
+    }
+
+    target = Package.from_descriptor(target_descriptor)
+    target.custom['updated_at'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
     
-    output = target.to_dict()
-    for resource_name in target.resource_names:
-        resource_descriptor = Resource(f'logs/transform/{resource_name}.json').to_descriptor()
-        output['resources'] = [
-        resource_descriptor if resource['name'] == resource_name else resource
-        for resource in output['resources']
-    ]
-    
-    package = Package.from_descriptor(output)
-    package.custom['updated_at'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-    package.transform(build_pipeline)
-    package.to_json(target_descriptor)
+    for resource in target.resources:
+        resource.infer(stats=True)
+
+    target.to_json('datapackage.json')
