@@ -1,5 +1,8 @@
+import os
+
 import pkg_resources
 import logging
+from pathlib import Path
 
 LOG_FORMAT = '%(asctime)s %(levelname)-5.5s [%(name)s] %(message)s'
 LOG_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S%z'
@@ -7,14 +10,57 @@ logging.basicConfig(format=LOG_FORMAT, datefmt=LOG_DATE_FORMAT, level=logging.IN
 
 logger = logging.getLogger(__name__)
 
+log_dir = ('{{ cookiecutter.project_slug }}/logs') # buscar forma correta no coockiecutter
+os.makedirs(log_dir, exist_ok=True) # provavelmente desnecessário no CC
+
+file_handler = logging.FileHandler( Path(log_dir, 'check-requirements.log'))
+file_handler.setFormatter(logging.Formatter(LOG_FORMAT, LOG_DATE_FORMAT))
+logger.addHandler(file_handler)
 
 logger_functions = dict(
-    on_missing=logger.error,
-    on_wrong_version=logger.warning
+    on_missing=logger.warning,
+    on_wrong_version=logger.error
 )
 
+def check_packages(requirements: str = 'requirements.txt', logger_options: dict = logger_functions ):
+    missing_packages = []
+    wrong_version_packages = []
+
+    packages = read_requirements_txt(requirements)
+
+    for package_name, expected_version in packages.items():
+        try:
+            installed_version = pkg_resources.get_distribution(package_name).version
+            if pkg_resources.parse_version(installed_version) != pkg_resources.parse_version(expected_version):
+                wrong_version_packages.append((package_name, installed_version, expected_version))
+        except pkg_resources.DistributionNotFound:
+            missing_packages.append(package_name)
+
+    logger.info("Checking installed packages before continuing...")
+
+    if missing_packages:
+        message = f"Required packages are missing: {', '.join(missing_packages)}"
+
+        if logger_functions['on_missing'] == logger.error:
+            logger_functions['on_missing'](message)
+            raise Exception(f"Required packages are missing. Please check your installed packages.")
+        else:
+            logger_functions['on_missing'](message)
+
+    if wrong_version_packages:
+        message = [f"{pac} (Installed: {ins}, Expected: {exp})" for pac, ins, exp in wrong_version_packages]
+
+        if logger_functions['on_wrong_version'] == logger.error:
+            logger_functions['on_wrong_version'](f"Wrong versions of packages: {' '.join(message)}")
+            raise Exception("Packages with wrong versions were found. Please check your installed packages.")
+        else:
+            logger_functions['on_wrong_version'](f"Packages with the wrong version were detected: {' '.join(message)}")
 
 
+    if not missing_packages and not wrong_version_packages:
+        logger.info("All packages are installed in the correct version.")
+
+    return missing_packages, wrong_version_packages # retornar mesmo que não seja usado, estilo pandas?
 
 def read_requirements_txt(file_path):
     packages_to_check = {}
@@ -30,44 +76,5 @@ def read_requirements_txt(file_path):
 
     return packages_to_check
 
-
-def check_packages(packages, logger_options ):
-    missing_packages = []
-    wrong_version_packages = []
-
-    for package_name, expected_version in packages.items():
-        try:
-            installed_version = pkg_resources.get_distribution(package_name).version
-            if pkg_resources.parse_version(installed_version) != pkg_resources.parse_version(expected_version):
-                wrong_version_packages.append((package_name, installed_version, expected_version))
-        except pkg_resources.DistributionNotFound:
-            missing_packages.append(package_name)
-
-    logger.info("Checking installed packages before continuing...")
-
-    if missing_packages:
-        logger_functions['on_missing']("Missing packages:")
-        for package in missing_packages:
-            logger.info(package)
-
-        if logger_functions['on_missing'] == logger.error:
-            raise Exception("Wrong version packages were found. Aborting the program.")
-
-    if wrong_version_packages:
-        logger_functions['on_wrong_version']("Packages with the wrong version:")
-        for package, installed_version, expected_version in wrong_version_packages:
-            logger.info(f"{package} (Installed: {installed_version}, Expected: {expected_version})")
-
-        if logger_functions['on_wrong_version'] == logger.error:
-            raise Exception("Missing packages were found. Aborting the program.")
-
-    if not missing_packages and not wrong_version:
-        logger.info("All packages are installed in the correct version.")
-
-    return missing_packages, wrong_version_packages
-
-
-requirements = read_requirements_txt('requirements.txt')
-
-missing, wrong_version = check_packages(requirements, logger_functions)
+check_packages() # easy run for test
 
