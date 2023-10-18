@@ -1,8 +1,5 @@
-import os
-
 import pkg_resources
 import logging
-from pathlib import Path
 
 LOG_FORMAT = '%(asctime)s %(levelname)-5.5s [%(name)s] %(message)s'
 LOG_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S%z'
@@ -10,21 +7,18 @@ logging.basicConfig(format=LOG_FORMAT, datefmt=LOG_DATE_FORMAT, level=logging.IN
 
 logger = logging.getLogger(__name__)
 
-log_dir = ('{{ cookiecutter.project_slug }}/logs') # buscar forma correta no coockiecutter
-os.makedirs(log_dir, exist_ok=True) # provavelmente desnecessário no CC
 
-file_handler = logging.FileHandler( Path(log_dir, 'logs.log'))
-file_handler.setFormatter(logging.Formatter(LOG_FORMAT, LOG_DATE_FORMAT))
-logger.addHandler(file_handler)
-
-logger_functions = dict(
-    on_missing=logger.warning,
-    on_wrong_version=logger.warning
-)
-
-def check_packages(requirements: str = 'requirements.txt', logger_options: dict = logger_functions ):
+def check_requirements(
+        requirements: str = 'requirements.in',
+        logger_options=dict(
+            on_missing=logger.error,
+            on_wrong_version=logger.error
+    )
+):
     missing_packages = []
     wrong_version_packages = []
+
+    logger_functions = logger_options
 
     packages = read_requirements_txt(requirements)
 
@@ -59,11 +53,9 @@ def check_packages(requirements: str = 'requirements.txt', logger_options: dict 
         else:
             logger_functions['on_wrong_version'](f"Packages with the wrong version were detected: {' '.join(message)}")
 
-
     if not missing_packages and not wrong_version_packages:
         logger.info("All packages are installed and have the correct version.")
 
-    return missing_packages, wrong_version_packages # retornar mesmo que não seja usado, estilo pandas?
 
 def read_requirements_txt(file_path):
     packages_to_check = {}
@@ -72,7 +64,7 @@ def read_requirements_txt(file_path):
         lines = file.read().splitlines()
 
         for line in lines:
-            if line.strip() and not line.startswith('#'):
+            if not line.strip().startswith('#'):
                 parts = line.split('==')
 
                 if len(parts) == 2:
@@ -83,5 +75,3 @@ def read_requirements_txt(file_path):
                     packages_to_check[parts[0]] = None
 
     return packages_to_check
-
-

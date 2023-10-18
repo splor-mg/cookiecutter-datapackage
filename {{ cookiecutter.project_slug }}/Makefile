@@ -1,6 +1,7 @@
 .PHONY: all extract validate transform build check publish clean
 
 EXT = txt
+CHECK_PKG := $(shell python scripts/check.py)
 RESOURCE_NAMES := $(shell python main.py resources)
 OUTPUT_FILES := $(addsuffix .csv,$(addprefix data/,$(RESOURCE_NAMES)))
 

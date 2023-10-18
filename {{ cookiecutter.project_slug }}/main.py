@@ -4,6 +4,7 @@ import logging
 from scripts.extract import extract_resource
 from scripts.transform import transform_resource
 from scripts.build import build_package
+from scripts.check import check_requirements
 
 app = typer.Typer(pretty_exceptions_show_locals=False)
 
@@ -26,6 +27,7 @@ def resources(descriptor: str = 'datapackage.yaml'):
 app.command(name="extract")(extract_resource)
 app.command(name="transform")(transform_resource)
 app.command(name="build")(build_package)
+app.command(name="check")(check_requirements)
 
 if __name__ == "__main__":
     LOG_FORMAT = '%(asctime)s %(levelname)-5.5s [%(name)s] %(message)s'
