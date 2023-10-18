@@ -13,13 +13,13 @@ logger = logging.getLogger(__name__)
 log_dir = ('{{ cookiecutter.project_slug }}/logs') # buscar forma correta no coockiecutter
 os.makedirs(log_dir, exist_ok=True) # provavelmente desnecessário no CC
 
-file_handler = logging.FileHandler( Path(log_dir, 'check-requirements.log'))
+file_handler = logging.FileHandler( Path(log_dir, 'logs.log'))
 file_handler.setFormatter(logging.Formatter(LOG_FORMAT, LOG_DATE_FORMAT))
 logger.addHandler(file_handler)
 
 logger_functions = dict(
     on_missing=logger.warning,
-    on_wrong_version=logger.error
+    on_wrong_version=logger.warning
 )
 
 def check_packages(requirements: str = 'requirements.txt', logger_options: dict = logger_functions ):
@@ -31,8 +31,11 @@ def check_packages(requirements: str = 'requirements.txt', logger_options: dict 
     for package_name, expected_version in packages.items():
         try:
             installed_version = pkg_resources.get_distribution(package_name).version
-            if pkg_resources.parse_version(installed_version) != pkg_resources.parse_version(expected_version):
-                wrong_version_packages.append((package_name, installed_version, expected_version))
+
+            if expected_version:
+                if pkg_resources.parse_version(installed_version) != pkg_resources.parse_version(expected_version):
+                    wrong_version_packages.append((package_name, installed_version, expected_version))
+
         except pkg_resources.DistributionNotFound:
             missing_packages.append(package_name)
 
@@ -58,7 +61,7 @@ def check_packages(requirements: str = 'requirements.txt', logger_options: dict 
 
 
     if not missing_packages and not wrong_version_packages:
-        logger.info("All packages are installed in the correct version.")
+        logger.info("All packages are installed and have the correct version.")
 
     return missing_packages, wrong_version_packages # retornar mesmo que não seja usado, estilo pandas?
 
@@ -67,14 +70,18 @@ def read_requirements_txt(file_path):
 
     with open(file_path, 'r') as file:
         lines = file.read().splitlines()
+
         for line in lines:
             if line.strip() and not line.startswith('#'):
                 parts = line.split('==')
+
                 if len(parts) == 2:
                     package_name, package_version = parts
                     packages_to_check[package_name] = package_version
 
+                elif len(parts) == 1:
+                    packages_to_check[parts[0]] = None
+
     return packages_to_check
 
-check_packages() # easy run for test
 
