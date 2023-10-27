@@ -1,12 +1,8 @@
 import importlib.metadata as pkg_metadata
-import logging
+import exceptions
+from log import create_logger
 
-LOG_FORMAT = '%(asctime)s %(levelname)-5.5s [%(name)s] %(message)s'
-LOG_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S%z'
-logging.basicConfig(format=LOG_FORMAT, datefmt=LOG_DATE_FORMAT, level=logging.INFO)
-
-logger = logging.getLogger(__name__)
-
+logger = create_logger(__name__)
 
 
 def check_requirements(
@@ -14,10 +10,6 @@ def check_requirements(
         stop_on_missing: bool = True,
         stop_on_wrong_version: bool = True,
 ):
-    logger_functions = dict(
-        on_missing=logger.error,
-        on_wrong_version=logger.error
-    )
 
     missing_packages = []
     wrong_version_packages = []
@@ -35,23 +27,19 @@ def check_requirements(
         except pkg_metadata.PackageNotFoundError:
             missing_packages.append(package_name)
 
-
     if missing_packages:
-        message = f"Required packages are missing: {', '.join(missing_packages)}"
-
         if stop_on_missing:
-            raise Exception(message)
+            raise exceptions.MissingPackageError([missing_packages, logger])
         else:
-            logger_functions["on_missing"](message)
+            logger.error(f"Required packages are missing: {', '.join(missing_packages)}")
 
     if wrong_version_packages:
-        message = [f"{pac} (Installed: {ins}, Expected: {exp})" for pac, ins, exp in wrong_version_packages]
-
         if stop_on_wrong_version:
-            raise Exception(f"Required packages with wrong versions: {', '.join(message)}")
+            raise exceptions.WrongVersionPackageError([wrong_version_packages, logger])
 
         else:
-            logger_functions["on_wrong_version"](f"Required packages with wrong versions: {' '.join(message)}")
+            message = [f"{pac} (Installed: {ins}, Expected: {exp})" for pac, ins, exp in wrong_version_packages]
+            logger.error(f"Required packages with wrong versions: {message}")
 
     if not missing_packages and not wrong_version_packages:
         logger.info("All packages are installed and have the correct version.")
