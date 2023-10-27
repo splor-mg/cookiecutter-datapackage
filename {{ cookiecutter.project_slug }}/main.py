@@ -4,7 +4,6 @@ import logging
 from scripts.extract import extract_resource
 from scripts.transform import transform_resource
 from scripts.build import build_package
-from scripts.requirements import check_requirements
 
 app = typer.Typer(pretty_exceptions_show_locals=False)
 
@@ -24,13 +23,15 @@ def resources(descriptor: str = 'datapackage.yaml'):
     print(output)
     return 0
 
+
 app.command(name="extract")(extract_resource)
 app.command(name="transform")(transform_resource)
 app.command(name="build")(build_package)
-app.command(name="requirements")(check_requirements)
+
 
 if __name__ == "__main__":
     LOG_FORMAT = '%(asctime)s %(levelname)-5.5s [%(name)s] %(message)s'
     LOG_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S%z'
     logging.basicConfig(format=LOG_FORMAT, datefmt=LOG_DATE_FORMAT, level=logging.INFO)
     app()
+

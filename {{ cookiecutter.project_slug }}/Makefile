@@ -9,15 +9,16 @@ OUTPUT_FILES := $(addsuffix .csv,$(addprefix data/,$(RESOURCE_NAMES)))
 all: requirements extract validate transform build check
 
 %: requirements
-	:
+	@:
 
 requirements:
-	python main.py requirements
+	@echo Checking installed packages before continuing...
+	python scripts/requirements.py
 
 extract:
 	$(foreach resource_name, $(RESOURCE_NAMES),python main.py extract $(resource_name) &&) true
 
-validate:
+validate:cd ..check
 	frictionless validate datapackage.yaml
 
 transform: $(OUTPUT_FILES)
