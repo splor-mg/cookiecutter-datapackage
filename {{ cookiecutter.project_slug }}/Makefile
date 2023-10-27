@@ -18,7 +18,7 @@ requirements:
 extract:
 	$(foreach resource_name, $(RESOURCE_NAMES),python main.py extract $(resource_name) &&) true
 
-validate:cd ..check
+validate: check
 	frictionless validate datapackage.yaml
 
 transform: $(OUTPUT_FILES)
