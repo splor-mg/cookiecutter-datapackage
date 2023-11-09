@@ -3,7 +3,7 @@
 
 EXT = txt
 
-RESOURCE_NAMES := $(shell python main.py resources) && exit 1
+RESOURCE_NAMES := $(shell python main.py resources)
 OUTPUT_FILES := $(addsuffix .csv,$(addprefix data/,$(RESOURCE_NAMES)))
 
 all: requirements extract validate transform build check
