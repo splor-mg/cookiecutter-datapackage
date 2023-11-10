@@ -1,19 +1,18 @@
 .PHONY: requirements all extract validate transform build check publish clean
 
-
 EXT = txt
 
 RESOURCE_NAMES := $(shell python main.py resources)
 OUTPUT_FILES := $(addsuffix .csv,$(addprefix data/,$(RESOURCE_NAMES)))
 
-all: requirements extract validate transform build check
+all: extract validate transform build check
 
 %: requirements
-	@:
+	@true
 
 requirements:
-	@echo Checking installed packages before continuing...
-	python scripts/requirements.py
+	@echo Checking python packages...
+	@python scripts/requirements.py
 
 extract:
 	$(foreach resource_name, $(RESOURCE_NAMES),python main.py extract $(resource_name) &&) true
