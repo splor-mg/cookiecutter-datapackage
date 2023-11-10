@@ -41,8 +41,6 @@ def check_requirements(
             message = [f"{pac} (Installed: {ins}, Expected: {exp})" for pac, ins, exp in wrong_version_packages]
             logger.error(f"Required packages with wrong versions: {message}")
 
-    if not missing_packages and not wrong_version_packages:
-        logger.info("All packages are installed and have the correct version.")
 
 
 def read_requirements_txt(file_path):
