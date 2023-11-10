@@ -1,9 +1,9 @@
 import importlib.metadata as pkg_metadata
 import exceptions
-from log import create_logger
+import config
+import logging
 
-logger = create_logger(__name__)
-
+logger = logging.getLogger(__name__)
 
 def check_requirements(
         requirements: str = 'requirements.in',

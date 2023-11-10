@@ -4,7 +4,6 @@ import petl as etl
 from dpm.utils import as_identifier
 from scripts.pipelines import transform_pipeline
 
-
 logger = logging.getLogger(__name__)
 
 def transform_resource(resource_name: str, source_descriptor: str = 'datapackage.yaml'):

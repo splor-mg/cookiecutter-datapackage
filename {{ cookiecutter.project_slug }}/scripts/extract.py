@@ -1,4 +1,5 @@
 import logging
+import scripts.config
 
 logger = logging.getLogger(__name__)
 
