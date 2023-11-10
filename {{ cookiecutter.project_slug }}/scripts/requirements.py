@@ -13,13 +13,11 @@ def check_requirements(
 
     missing_packages = []
     wrong_version_packages = []
-
     packages = read_requirements_txt(requirements)
 
     for package_name, expected_version in packages.items():
         try:
             installed_version = pkg_metadata.version(package_name)
-
             if expected_version:
                 if installed_version != expected_version:
                     wrong_version_packages.append((package_name, installed_version, expected_version))
@@ -28,19 +26,15 @@ def check_requirements(
             missing_packages.append(package_name)
 
     if missing_packages:
+        logger.warning("Required packages are missing: %s", ', '.join(missing_packages))
         if stop_on_missing:
-            raise exceptions.MissingPackageError([missing_packages, logger])
-        else:
-            logger.error(f"Required packages are missing: {', '.join(missing_packages)}")
+            raise exceptions.MissingPackageError
 
     if wrong_version_packages:
+        for package, actual, expected in wrong_version_packages:
+            logger.warning("Required package with wrong version: %s (Installed: %s, Expected: %s)", package, actual, expected)
         if stop_on_wrong_version:
-            raise exceptions.WrongVersionPackageError([wrong_version_packages, logger])
-
-        else:
-            message = [f"{pac} (Installed: {ins}, Expected: {exp})" for pac, ins, exp in wrong_version_packages]
-            logger.error(f"Required packages with wrong versions: {message}")
-
+            raise exceptions.WrongVersionPackageError
 
 
 def read_requirements_txt(file_path):
