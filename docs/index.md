@@ -37,6 +37,7 @@ Agora pode ser um bom momento para fazer um commit dos arquivos originais do tem
 ```bash
 cd ~/project/
 git add .
+git add -f data/.gitkeep data-raw/.gitkeep
 git commit -m "initial commit"
 ```
 
