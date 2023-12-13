@@ -8,3 +8,7 @@ extra:
 plugins:
   - mike:
       version_selector: true
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences

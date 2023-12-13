@@ -1,6 +1,6 @@
 # Intro
 
-Project template para criação de [frictionless data packages](https://frictionlessdata.io/).
+Project template para criação e atualização de [frictionless data packages](https://frictionlessdata.io/) das fontes de dados primárias utilizadas no âmbito da Assessoria de Inteligência de Dados.
 
 ## Requirements
 
@@ -40,6 +40,15 @@ git add .
 git add -f data/.gitkeep data-raw/.gitkeep
 git commit -m "initial commit"
 ```
+
+!!! note
+
+    O `cookiecutter-datapackage` possui um [workflow padronizado](https://github.com/splor-mg/cookiecutter-datapackage/blob/main/%7B%7B%20cookiecutter.project_slug%20%7D%7D/.github/workflows/all.yaml) do [Github Actions](https://docs.github.com/en/actions) para executar os _phony targets_ `make all` e `make publish` diariamente (`on schedule`) e sob demanda (`on workflow_dispatch`).
+
+    __Ao criar um novo repositório no Github esse workflow vai estar ativo por padrão.__
+    
+    Se o agendamento diário não for necessário (como por exemplo em repositórios _upstream_) lembre-se de [desativar o Github Actions](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository) para esse repositório.
+
 
 Para execução local é necessário a instalação das dependências do python no ambiente virtual do projeto:
 
