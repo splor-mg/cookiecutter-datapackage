@@ -1,0 +1,455 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://splor-mg.github.io/cookiecutter-datapackage/0.1/cookbooks/gmail/">
+      
+      
+        <link rel="prev" href="../../tutorial/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.20">
+    
+    
+      
+        <title>Extração de dados do gmail - Cookiecutter data package</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.eebd395e.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extracao-de-dados-do-gmail" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cookiecutter data package" class="md-header__button md-logo" aria-label="Cookiecutter data package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cookiecutter data package
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extração de dados do gmail
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cookiecutter data package" class="md-nav__button md-logo" aria-label="Cookiecutter data package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Cookiecutter data package
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Intro
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/" class="md-nav__link">
+        Tutorial
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Cookbooks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Cookbooks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Extração de dados do gmail
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Extração de dados do gmail
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#criacao-de-um-client-oauth" class="md-nav__link">
+    Criação de um client OAuth
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criacao-do-token-gmailrds" class="md-nav__link">
+    Criação do token gmail.rds
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disponibilizacao-da-chave-privada-gmailr_key-para-o-github-actions" class="md-nav__link">
+    Disponibilização da chave privada GMAILR_KEY para o Github Actions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#criacao-de-um-client-oauth" class="md-nav__link">
+    Criação de um client OAuth
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criacao-do-token-gmailrds" class="md-nav__link">
+    Criação do token gmail.rds
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disponibilizacao-da-chave-privada-gmailr_key-para-o-github-actions" class="md-nav__link">
+    Disponibilização da chave privada GMAILR_KEY para o Github Actions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="extracao-de-dados-do-gmail">Extração de dados do gmail</h1>
+<p>Alguns projetos como o <a href="https://github.com/splor-mg/armazem-siafi-dados">armazem-siafi-dados</a> precisam de realizar download de arquivos do gmail durante a execução da etapa de extração. 
+Atualmente utilizamos o pacote <a href="https://github.com/r-lib/gmailr/">gmailr</a> do R para implementar os scripts de extração nestes projetos.</p>
+<p>Como o download de arquivos do gmail exige autenticação, para execução da etapa de extração via Github Actions é necessário uma etapa adicional de configuração.</p>
+<p>A configuração consiste em salvar um token criptografado no repositório do projeto (eg. <code>gmailr.rds</code>) e uma chave privada no Github Actions <a href="https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions">secret</a> (eg. <code>GMAILR_KEY</code>).</p>
+<p>Com esse par de informação o script de extração consegue fazer autenticação e download dos arquivos.</p>
+<h2 id="criacao-de-um-client-oauth">Criação de um client OAuth</h2>
+<p>Via de regra não será necessário criar um client OAuth<sup id="fnref:20240130T100107"><a class="footnote-ref" href="#fn:20240130T100107">1</a></sup>.
+Em caso de dúvida, 
+converse com seu coleguinha.</p>
+<p>Caso realmente seja necessário siga as instruções disponíveis em <a href="https://gmailr.r-lib.org/dev/articles/oauth-client.html">Set up an OAuth client • gmailr</a>.</p>
+<h2 id="criacao-do-token-gmailrds">Criação do token gmail.rds</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Se você está criando um novo repositório anual (eg. <code>armazem-siafi-dados-2024</code>) a partir de um repositório upstream (eg. <code>armazem-siafi-dados</code>) é provável que o token <code>gmail.rds</code> já esteja criado e armazenado no repositório. </p>
+<p>Nesse caso, siga as <a href="#disponibilizacao-da-chave-privada-gmailr_key-para-o-github-actions">instruções</a> para disponibilizar a informação da chave privada para o Github Actions.</p>
+</div>
+<p>Na pasta do projeto execute<sup id="fnref:20240130T102409"><a class="footnote-ref" href="#fn:20240130T102409">2</a></sup> no console do R:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">gmailr</span><span class="p">)</span>
+
+<span class="nf">gm_auth_configure</span><span class="p">(</span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;~/.gmailr/credentials.json&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1"># path/to/your/oauth_client.json</span>
+<span class="nf">gm_auth</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="s">&#39;dcmefo.scppo@gmail.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">cache</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+
+<span class="n">gmailr_key</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gargle</span><span class="o">::</span><span class="nf">secret_make_key</span><span class="p">()</span><span class="w"> </span><span class="c1"># string aleatória utilizada como chave de criptografia</span>
+<span class="nf">Sys.setenv</span><span class="p">(</span><span class="n">GMAILR_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gmailr_key</span><span class="p">)</span>
+<span class="nf">Sys.getenv</span><span class="p">(</span><span class="s">&quot;GMAILR_KEY&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># anote este valor</span>
+
+<span class="nf">gm_token_write</span><span class="p">(</span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;gmail.rds&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GMAILR_KEY&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Como nosso token fica exposto no Github ele deve ser criptografado. 
+A função <a href="https://gargle.r-lib.org/reference/gargle_secret.html"><code>gargle::secret_make_key()</code></a> é usada para gerar uma string aleatória que pode ser usada como chave de criptografia. 
+A mesma chave precisa estar disponível como uma variável de ambiente <code>GMAILR_KEY</code> no seu ambiente de desenvolvimento local para geração do token e no Github Actions para que o token armazenado no arquivo <code>gmail.rds</code> possa ser descriptografado.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Na mensagem:</p>
+<div class="highlight"><pre><span></span><code>Is it OK to cache OAuth access credentials in the folder ~/Library/Caches/gargle
+between R sessions?
+1: Yes
+2: No
+</code></pre></div>
+<p>Escolher <code>No</code> caso contrário em um segundo computador a execução não vai funcionar com o erro:</p>
+<div class="highlight"><pre><span></span><code>Warning message:
+In gzfile(file, mode) :
+cannot open compressed file &#39;C:/Users/Henrique/AppData/Local/gargle/gargle/Cache/c123167a8057ead5095cb72c1b2704a6_dcmefo.scppo@gmail.com&#39;, probable reason &#39;No such file or directory&#39;
+Execution halted
+</code></pre></div>
+</div>
+<h2 id="disponibilizacao-da-chave-privada-gmailr_key-para-o-github-actions">Disponibilização da chave privada GMAILR_KEY para o Github Actions</h2>
+<p>No nosso plano atual do Github para a organização <code>splor-mg</code> "organization secrets and variables cannot be used by private repositories".
+Portanto é necessário criar o segredo <code>GMAILR_KEY</code> em cada repositório que precisa de realizar extração.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Importante lembrar que a variável de ambiente <code>GMAILR_KEY</code> deve estar disponível dentro do container (ie. <a href="https://github.com/splor-mg/armazem-siafi-totais-dados/tree/547e22165dcc6924b9d2dab80e5eee444b768471">https://github.com/splor-mg/armazem-siafi-totais-dados/tree/547e22165dcc6924b9d2dab80e5eee444b768471</a>)</p>
+</div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:20240130T100107">
+<p>Uma boa leitura para entender mais sobre OAuth de forma geral é <a href="https://httr2.r-lib.org/articles/oauth.html">OAuth • httr2</a>.&#160;<a class="footnote-backref" href="#fnref:20240130T100107" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:20240130T102409">
+<p>Instruções adaptadas de <a href="https://cran.r-project.org/web/packages/gmailr/vignettes/deploy-a-token.html">Deploy a token</a>&#160;<a class="footnote-backref" href="#fnref:20240130T102409" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>
