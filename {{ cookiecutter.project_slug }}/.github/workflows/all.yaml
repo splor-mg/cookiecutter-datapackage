@@ -38,6 +38,6 @@ jobs:
       uses: JasonEtco/create-an-issue@v2
       if: failure()
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
       with:
         filename: .github/workflow-failure.md
