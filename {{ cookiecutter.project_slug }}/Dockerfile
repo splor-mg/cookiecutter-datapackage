@@ -13,5 +13,5 @@ RUN echo 'alias python=python3' >> /etc/bash.bashrc
 COPY requirements.txt .
 COPY DESCRIPTION .
 
-RUN python -m pip install -r requirements.txt
+RUN python3 -m pip install -r requirements.txt
 RUN Rscript -e "install.packages('renv')" && Rscript -e 'renv::install()'
