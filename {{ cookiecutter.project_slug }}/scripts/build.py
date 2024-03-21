@@ -1,6 +1,9 @@
 from frictionless import Package, Resource
 from datetime import datetime
 from dpm.utils import as_identifier
+import json
+from pathlib import Path
+
 
 def build_package(descriptor: str = 'datapackage.yaml'):
     
@@ -32,5 +35,11 @@ def build_package(descriptor: str = 'datapackage.yaml'):
     
     for resource in target.resources:
         resource.infer(stats=True)
+        file_path = Path(f"logs/{resource.name}.json")
+        if Path.exists(file_path):
+            with open(file_path, 'r') as file:
+                # Load existing content
+                metadata = json.load(file)
+            resource.custom.update({'metadata': metadata})
 
     target.to_json('datapackage.json')
