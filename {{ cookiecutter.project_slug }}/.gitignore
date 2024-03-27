@@ -6,3 +6,4 @@ data-raw/
 logs/
 datapackage.json
 __pycache__
+.idea
