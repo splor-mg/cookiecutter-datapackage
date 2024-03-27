@@ -8,8 +8,6 @@ RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get install -y git
 
-RUN echo 'alias python=python3' >> /etc/bash.bashrc
-
 COPY requirements.txt .
 COPY DESCRIPTION .
 
