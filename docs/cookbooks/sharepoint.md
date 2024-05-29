@@ -56,7 +56,7 @@ Após o token ser disponibilizado como um arquivo .rds criptografado, para utili
 ```R
 # decriptar token criptografado
 k_env <- Sys.getenv("MS365_KEY") # obtém a string da chave privada que foi armazenada como variável de ambiente
-key <- cyphr::key_sodium(sodium::hex2bin(k_str)) # converte a chave privada de string para binário
+key <- cyphr::key_sodium(sodium::hex2bin(k_env)) # converte a chave privada de string para binário
 token = cyphr::decrypt(readRDS("ms365r.rds"), key) # le e descriptografa o arquivo do token
 
 ```
