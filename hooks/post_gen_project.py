@@ -2,7 +2,8 @@ import subprocess
 
 def pip_compile():
     print('Running pip compile...')
-    subprocess.run(['python', '-m', 'piptools', 'compile', '--quiet'], check=True)
+    with open("requirements.txt", "w") as fs:
+        subprocess.run(['uv', 'pip', 'compile', 'requirements.in'], check=True, stdout=fs)
 
 def create_venv():
     print('Creating virtual environment...')

@@ -8,7 +8,7 @@ Para inicialização do projeto os seguintes softwares são necessários:
 
 - git;
 - make;
-- Python (e pacotes `cookiecutter`, `jinja2-git`, e `pip-tools`).
+- Python (e pacotes `cookiecutter`, `jinja2-git`, e `uv` preferencialmente instalados com [`pipx`](https://github.com/pypa/pipx)).
 
 Para execução das etapas do processo de ETL é necessário:
 
@@ -56,6 +56,16 @@ Para execução local é necessário a instalação das dependências do python 
 source venv/bin/activate
 python -m pip install -r requirements.txt
 ```
+
+!!! note
+
+    O arquivo `requirements.in` é utilizado para controle das dependências python diretas do projeto. Qualquer atualização neste arquivo deve ser seguida da execução do comando:
+
+    ```bash
+     uv pip compile requirements.in > requirements.txt
+    ```
+
+    Dessa forma o arquivo `requirements.txt` vai estar atualizado com todas as versões das dependências diretas e indiretas do projeto.
 
 Você pode testar que tudo funcionou com o comando:
 
