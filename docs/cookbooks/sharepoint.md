@@ -80,14 +80,14 @@ Insira um novo segredo `MS36_KEY`  e a string da chave privada anotada:
 
 Nota: Se você gerar outra chave privada e criptografar o arquivo com essa nova chave, naturalmente a chave anterior não funcionará para descriptografar o arquivo do token.
 
-Importante lembrar que a variável de ambiente `MS365_KEY` deve estar disponível dentro do container, no `Makefile` do projeto:
+Importante lembrar que a variável de ambiente MS365_KEY deve estar disponível dentro do container, no workflow do Github Actions do projeto você pode fazer isso com:
 
 
-```makefile
-env:
-	MS3655_KEY: ${{ secrets.MS365_KEY }}
-run: 
-	docker run -e MS365_KEY=$MS365_KEY --rm --mount type=bind,source=${PWD},target=/project fjuniorr/${{ github.event.repository.name }}
+```dockerfile
+- name: ETL pipeline
+  env: 
+    MS365_KEY: ${{ secrets.MS365_KEY }}
+  run: docker run -e MS365_KEY=$MS365_KEY --rm --mount type=bind,source=${PWD},target=/project fjuniorr/${{ github.event.repository.name }} make all
 ```
 
 
