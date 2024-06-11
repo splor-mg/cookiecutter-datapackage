@@ -1,3 +1,4 @@
 pip-tools
 frictionless
 git+https://github.com/splor-mg/dpm.git@main
+git+https://github.com/splor-mg/checks-py.git@main
