@@ -3,7 +3,7 @@ import logging.config
 LOGGING = {
     "version":1,
     "root":{
-        "handlers" : ["console"],
+        "handlers" : ["console", "file"],
         "level": "INFO"
     },
     "handlers":{
@@ -11,7 +11,15 @@ LOGGING = {
             "formatter": "std_out",
             "class": "logging.StreamHandler",
             "level": "INFO"
-        }
+        },
+    "file": {
+        "formatter": "std_out",
+        "class": "logging.FileHandler",
+        "level": "INFO",
+        "filename": "logfile.log",
+        "mode": "a",
+        "encoding": "utf-8",
+    },        
     },
     "formatters":{
         "std_out": {
