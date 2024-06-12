@@ -1,2 +1,2 @@
 git+https://github.com/splor-mg/dpm.git@main
-git+https://github.com/splor-mg/checks-py.git@main
+git+https://github.com/splor-mg/checks.git@main
