@@ -2,4 +2,5 @@ Package: {{ cookiecutter.project_slug }}
 Imports:
     renv
     testthat (>= 3.0.0),
+    gh
 Encoding: UTF-8

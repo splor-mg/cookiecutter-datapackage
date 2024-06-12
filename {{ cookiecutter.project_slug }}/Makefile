@@ -1,4 +1,4 @@
-.PHONY: all extract validate transform build check publish clean
+.PHONY: all extract validate transform build check publish clean notify
 
 include config.mk
 
@@ -27,6 +27,9 @@ datapackage.json: $(OUTPUT_FILES) scripts/build.py datapackage.yaml
 
 check:
 	frictionless validate datapackage.json
+
+notify: 
+	Rscript	scripts/notify.R
 
 publish:
 	git add -Af datapackage.json data/*.csv data-raw/*.$(EXT)
