@@ -1,4 +1,6 @@
 ---
-title: Falha na execução do workflow em {% raw %}{{ date | date() }}{% endraw %}
+title: Erro na execução do workflow
 labels: bug
 ---
+
+https://github.com/{{ repo.owner }}/{{ repo.repo }}/actions/runs/{{ env.RUNID }}

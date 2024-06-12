@@ -28,20 +28,19 @@ jobs:
         cache-from: type=registry,ref=fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %}:latest
         cache-to: type=inline
     - name: ETL pipeline
-      run: docker run --rm --mount type=bind,source=${PWD},target=/project fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %} make all
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: docker run -e GITHUB_TOKEN=$GITHUB_TOKEN --rm --mount type=bind,source=${PWD},target=/project fjuniorr/${{ github.event.repository.name }} make all && make notify
     - name: Publish data package
       run: |-
         git config user.name "Automated"
         git config user.email "actions@users.noreply.github.com"
         make publish
-    - name: ETL pipeline notifications
-      env:
-        GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
-      run: docker run -e GITHUB_TOKEN=$GITHUB_TOKEN --rm --mount type=bind,source=${PWD},target=/project fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %} make notify
     - name: Workflow failure notification
       uses: JasonEtco/create-an-issue@v2
       if: failure()
       env:
         GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+        RUNID: ${{ github.run_id }}
       with:
         filename: .github/workflow-failure.md
