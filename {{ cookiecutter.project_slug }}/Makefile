@@ -10,7 +10,7 @@ OUTPUT_FILES := $(addsuffix .csv,$(addprefix data/,$(RESOURCE_NAMES)))
 all: extract validate transform build check
 
 extract:
-	$(foreach resource_name, $(RESOURCE_NAMES),python main.py extract $(resource_name) &&) true
+	$(foreach resource_name, $(RESOURCE_NAMES),$(PYTHON) main.py extract $(resource_name) &&) true
 
 validate:
 	frictionless validate datapackage.yaml
