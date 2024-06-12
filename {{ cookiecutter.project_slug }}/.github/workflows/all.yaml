@@ -34,6 +34,10 @@ jobs:
         git config user.name "Automated"
         git config user.email "actions@users.noreply.github.com"
         make publish
+    - name: ETL pipeline notifications
+      env:
+        GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+      run: docker run -e GITHUB_TOKEN=$GITHUB_TOKEN --rm --mount type=bind,source=${PWD},target=/project fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %} make notify
     - name: Workflow failure notification
       uses: JasonEtco/create-an-issue@v2
       if: failure()
