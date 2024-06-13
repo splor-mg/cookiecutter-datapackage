@@ -48,14 +48,15 @@ main <- function() {
   owner_repo <- paste(owner, repo, sep = "/")
   issue_name <- "Warnings na execução do workflow"
   
-  log <- readLines("logfile.log", warn = FALSE)
+  log <- readLines("logfile.log")
   
-  logignore <- paste(paste0(readLines(".logignore"), "$"), collapse = "|")
-  
-  if (logignore == "") {
+  logignore <- readLines(".logignore")
+
+  if (rlang::is_empty(logignore)) {
     is_ignored <- rep_len(FALSE, length(log))
   } else {
-    is_ignored <- grepl(logignore, log)  
+    logignore <- paste(paste0(logignore, "$"), collapse = "|")
+    is_ignored <- grepl(logignore, log)
   }
   
   ignored_msg <- ifelse(is_ignored, " [IGNORED]", "")

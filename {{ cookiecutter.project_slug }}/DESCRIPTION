@@ -3,5 +3,6 @@ Imports:
     renv,
     testthat (>= 3.0.0),
     gh,
-    logger
+    logger,
+    rlang
 Encoding: UTF-8
