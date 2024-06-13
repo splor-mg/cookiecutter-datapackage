@@ -44,7 +44,7 @@ comment_issue <- function(owner, repo, issue_number, comment_body) {
 main <- function() {
   
   owner <- "splor-mg"
-  repo <- "test_warninglogs_issue"
+  repo <- "{{ cookiecutter.project_slug }}"
   owner_repo <- paste(owner, repo, sep = "/")
   issue_name <- "Warnings na execução do workflow"
   
