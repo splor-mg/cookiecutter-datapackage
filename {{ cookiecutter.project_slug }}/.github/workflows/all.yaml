@@ -29,8 +29,8 @@ jobs:
         cache-to: type=inline
     - name: ETL pipeline
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: docker run -e GITHUB_TOKEN=$GITHUB_TOKEN --rm --mount type=bind,source=${PWD},target=/project fjuniorr/${{ github.event.repository.name }} make all && make notify
+        GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+      run: docker run -e GITHUB_TOKEN=$GITHUB_TOKEN --rm --mount type=bind,source=${PWD},target=/project fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %} make all && make notify
     - name: Publish data package
       run: |-
         git config user.name "Automated"
@@ -41,6 +41,6 @@ jobs:
       if: failure()
       env:
         GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
-        RUNID: ${{ github.run_id }}
+        RUNID: {% raw %}${{ github.run_id }}{% endraw %}
       with:
         filename: .github/workflow-failure.md

@@ -3,4 +3,4 @@ title: Erro na execução do workflow
 labels: bug
 ---
 
-https://github.com/{{ repo.owner }}/{{ repo.repo }}/actions/runs/{{ env.RUNID }}
+https://github.com/{% raw %}{{ repo.owner }}{% endraw %}/{% raw %}{{ repo.repo }}{% endraw %}/actions/runs/{% raw %}{{ env.RUNID }}{% endraw %}
