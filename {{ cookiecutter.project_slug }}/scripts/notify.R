@@ -70,10 +70,10 @@ main <- function() {
     
     if (is.null(issue)) {
       result <- create_issue(owner, repo, issue_name, comment_body)
-      logger::log_info(paste("Issue", issue_name, "not found. Creating issue", result$html_url))
+      logger::log_info(paste("Warning issue not found. Created", result$html_url))
     } else {
       result <- comment_issue(owner, repo, issue$number, comment_body)
-      logger::log_info(paste("Issue", issue$title, "found", result$html_ur))
+      logger::log_info(paste("Warning issue found at", result$html_ur))
     }    
   }
 }
