@@ -1,4 +1,4 @@
-.PHONY: all extract validate transform build check publish clean
+.PHONY: all extract validate transform build check publish clean notify
 
 include config.mk
 
@@ -10,7 +10,7 @@ OUTPUT_FILES := $(addsuffix .csv,$(addprefix data/,$(RESOURCE_NAMES)))
 all: extract validate transform build check
 
 extract:
-	$(foreach resource_name, $(RESOURCE_NAMES),python main.py extract $(resource_name) &&) true
+	$(foreach resource_name, $(RESOURCE_NAMES),$(PYTHON) main.py extract $(resource_name) &&) true
 
 validate:
 	frictionless validate datapackage.yaml
@@ -27,6 +27,9 @@ datapackage.json: $(OUTPUT_FILES) scripts/build.py datapackage.yaml
 
 check:
 	frictionless validate datapackage.json
+
+notify: 
+	Rscript	scripts/notify.R
 
 publish:
 	git add -Af datapackage.json data/*.csv data-raw/*.$(EXT)

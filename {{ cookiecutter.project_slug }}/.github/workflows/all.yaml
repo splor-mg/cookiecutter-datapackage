@@ -10,17 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      uses: docker/setup-buildx-action@v3
     - name: Login to DockerHub
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: {% raw %}${{ secrets.DOCKERHUB_USERNAME }}{% endraw %}
         password: {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %}
 
     - name: Build and push Docker image
-      uses: docker/build-push-action@v4
+      uses: docker/build-push-action@v5
       with:
         context: .
         push: true
@@ -28,7 +28,12 @@ jobs:
         cache-from: type=registry,ref=fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %}:latest
         cache-to: type=inline
     - name: ETL pipeline
-      run: docker run --rm --mount type=bind,source=${PWD},target=/project fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %} make all
+      run: docker run --rm --mount type=bind,source=${PWD},target=/project fjuniorr/${{ github.event.repository.name }} make all
+    - name: ETL pipeline notification
+      env:
+        GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+      run: |-
+        docker run -e GITHUB_TOKEN=$GITHUB_TOKEN --rm --mount type=bind,source=${PWD},target=/project fjuniorr/${{ github.event.repository.name }} make notify
     - name: Publish data package
       run: |-
         git config user.name "Automated"
@@ -39,5 +44,6 @@ jobs:
       if: failure()
       env:
         GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+        RUNID: {% raw %}${{ github.run_id }}{% endraw %}
       with:
         filename: .github/workflow-failure.md
