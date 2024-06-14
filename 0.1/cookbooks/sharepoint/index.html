@@ -1,0 +1,489 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://splor-mg.github.io/cookiecutter-datapackage/0.1/cookbooks/sharepoint/">
+      
+      
+        <link rel="prev" href="../gmail/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.20">
+    
+    
+      
+        <title>Autenticação no Sharepoint 365 para extração de dados - Cookiecutter data package</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.eebd395e.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#autenticacao-no-sharepoint-365-para-extracao-de-dados" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cookiecutter data package" class="md-header__button md-logo" aria-label="Cookiecutter data package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cookiecutter data package
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Autenticação no Sharepoint 365 para extração de dados
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cookiecutter data package" class="md-nav__button md-logo" aria-label="Cookiecutter data package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Cookiecutter data package
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Intro
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/" class="md-nav__link">
+        Tutorial
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Cookbooks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Cookbooks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gmail/" class="md-nav__link">
+        Extração de dados do gmail
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Autenticação no Sharepoint 365 para extração de dados
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Autenticação no Sharepoint 365 para extração de dados
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#criacao-do-token-ms365rds" class="md-nav__link">
+    Criação do token ms365.rds
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recuperacao-do-token-criptografado" class="md-nav__link">
+    Recuperação do Token criptografado
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disponibilizacao-da-chave-privada-ms36_key-para-o-github-actions" class="md-nav__link">
+    Disponibilização da chave privada MS36_KEY para o Github Actions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilizacao-do-token-para-acesso-ao-sharepoint" class="md-nav__link">
+    Utilização do Token para acesso ao Sharepoint
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#criacao-do-token-ms365rds" class="md-nav__link">
+    Criação do token ms365.rds
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recuperacao-do-token-criptografado" class="md-nav__link">
+    Recuperação do Token criptografado
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disponibilizacao-da-chave-privada-ms36_key-para-o-github-actions" class="md-nav__link">
+    Disponibilização da chave privada MS36_KEY para o Github Actions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilizacao-do-token-para-acesso-ao-sharepoint" class="md-nav__link">
+    Utilização do Token para acesso ao Sharepoint
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="autenticacao-no-sharepoint-365-para-extracao-de-dados">Autenticação no Sharepoint 365 para extração de dados</h1>
+<p>Alguns projetos como o <a href="https://github.com/splor-mg/obz-dados">obz-dados</a> e <a href="https://github.com/splor-mg/dados-pptx-cofin">dados-pptx-cofin</a> precisam de realizar download de arquivos armazenados no sharepoint SPLOR  durante a execução da etapa de extração. </p>
+<p>Para tal, utilizamos o pacote <a href="https://cran.r-project.org/web/packages/Microsoft365R/index.html">microsoft365R</a> nos scripts que realizam a extração. Esse pacote obtém acesso ao sharepoint corporativo por meio de  autenticação via browser com uma conta de usuário que possua as permissões necessárias. O pacote obtém dessa forma um token de autenticação e o armazena localmente na máquina do usuário.</p>
+<p>Outros projetos podem possuir uma rotina de execução agendada da etapa de extração de dados via Github Actions, e tal forma de autenticação via browser não funciona nesse contexto. Todavia, como um token de autenticação é obtido e armazenado pelo Microsoft365R , esse mesmo token  pode ser encriptado e inserido no scripts do Github actions para que esse consiga autenticação.</p>
+<p>Esse processo consiste em:</p>
+<ol>
+<li>Obter o arquivo contendo o token  por meio do pacote Microsoft365R (somente necessário caso já não exista o token no repositório do projeto);</li>
+<li>Gerar uma chave privada e e anotá-la;</li>
+<li>Encriptar o token com essa chave privada e salvá-lo no diretório do projeto (e.g. <code>ms365.rds</code>);</li>
+<li>Adicionar a chave privada nas configurações de <a href="https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actionsdo">secret</a> do Github actions (e.g. <code>MS365_key</code>);</li>
+<li>Recuperar a chave privada por meio das opções de secrets do Gitub Actions e utilizá-la para descriptografar o token</li>
+<li>Utilizar o token nos scripts do projeto para autenticar no sharepoint e obter acesso aos recursos, como arquivos e pastas.</li>
+</ol>
+<p>Com esse par de informação, chave privada e token, o script de extração consegue fazer autenticação e download dos arquivos.</p>
+<h2 id="criacao-do-token-ms365rds">Criação do token ms365.rds</h2>
+<p>Caso você não possua um token válido localmente, siga os passos descritos <a href="https://github.com/splor-mg/cookiecutter-datapackage/issues/13">aqui</a> para obter um token novo.  O pacote Microsoft365R por padrão <code>C:\Users\&lt;user&gt;\AppData\Local\AzureR\</code>  no Windows e <code>"~/Library/Application Support/AzureR/</code> no Mac. O arquivo contendo o token tem um nome alfa-númerico como algo semelhante a  <code>0aaccf80a2c4a936420c1426459dgb3cc</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Se você está criando um novo repositório anual a partir de um repositório upstream é provável que o token <code>ms365.rds</code> já esteja criado e armazenado (criptografado) no repositório. </p>
+</div>
+<p>Na pasta do projeto execute no console do R:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">cyphr</span><span class="p">)</span>
+
+<span class="c1"># gerar chave aleatória</span>
+<span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sodium</span><span class="o">::</span><span class="nf">keygen</span><span class="p">()</span>
+
+<span class="c1"># encriptar token utilizando a chave aletarória</span>
+<span class="n">key</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cyphr</span><span class="o">::</span><span class="nf">key_sodium</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="n">cyphr</span><span class="o">::</span><span class="nf">encrypt_file</span><span class="p">(</span><span class="s">&quot;C:/Users/&lt;user&gt;/AppData/Local/AzureR/aaccf80a2c4a938420c1426459dfb3cc&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ms365r.rds&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># &lt;user&gt; sendo o nome de usuário no Windows.</span>
+<span class="n">k_str</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sodium</span><span class="o">::</span><span class="nf">bin2hex</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="c1"># anote/guarde essa string</span>
+</code></pre></div>
+<p>As funções <a href="https://cran.r-project.org/web/packages/sodium/vignettes/intro.html"><code>sodium::keygen()</code></a> e <code>cyphr::key_sodium(k)</code> são usadas para gerar uma chave aleatória que pode ser usada como chave de criptografia. A chave é gerada como um arquivo binário, portanto para que possa ser inserida como secret no Github actions é necessário transformá-la para a string equivalente por meio da função <code>sodium::bin2hex(k)</code>.  </p>
+<p>Essa string precisa estar disponível como uma variável de ambiente <code>MS365_KEY</code> no seu ambiente de desenvolvimento local para descriptografar o token e no Github Actions para que o token armazenado no arquivo <code>ms365.rds</code> possa ser descriptografado.</p>
+<p>Como o token fica exposto no Github ele deve ser criptografado com a chave gerada e será descriptografado posteriormente para autenticação no sharepoint durante a execução do Actions. Dessa forma o processo pode ocorrer no Github actions sem expor o token de autenticação publicamente.</p>
+<h2 id="recuperacao-do-token-criptografado">Recuperação do Token criptografado</h2>
+<p>Após o token ser disponibilizado como um arquivo .rds criptografado, para utilizá-lo execute o seguinte script R:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># decriptar token criptografado</span>
+<span class="n">k_env</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Sys.getenv</span><span class="p">(</span><span class="s">&quot;MS365_KEY&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># obtém a string da chave privada que foi armazenada como variável de ambiente</span>
+<span class="n">key</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cyphr</span><span class="o">::</span><span class="nf">key_sodium</span><span class="p">(</span><span class="n">sodium</span><span class="o">::</span><span class="nf">hex2bin</span><span class="p">(</span><span class="n">k_env</span><span class="p">))</span><span class="w"> </span><span class="c1"># converte a chave privada de string para binário</span>
+<span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cyphr</span><span class="o">::</span><span class="nf">decrypt</span><span class="p">(</span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;ms365r.rds&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="c1"># le e descriptografa o arquivo do token</span>
+</code></pre></div>
+<p>Dessa forma o token pode ser utilizado para autenticação e obter os arquivos </p>
+<h2 id="disponibilizacao-da-chave-privada-ms36_key-para-o-github-actions">Disponibilização da chave privada MS36_KEY para o Github Actions</h2>
+<p>No nosso plano atual do Github para a organização <code>splor-mg</code> "organization secrets and variables cannot be used by private repositories".
+Portanto é necessário criar o segredo <code>MS365_KEY</code> em cada repositório que precisa de realizar extração.</p>
+<p>Nas configurações do repositório (Settings), selecione "Secrets and Variables" e "actions":</p>
+<p><img alt="" src="../sharepoint_img/github_actions_secret_1.png" /></p>
+<p>Insira um novo segredo <code>MS36_KEY</code>  e a string da chave privada anotada:</p>
+<p><img alt="" src="../sharepoint_img/github_actions_secret_2.png" /></p>
+<p>Nota: Se você gerar outra chave privada e criptografar o arquivo com essa nova chave, naturalmente a chave anterior não funcionará para descriptografar o arquivo do token.</p>
+<p>Importante lembrar que a variável de ambiente MS365_KEY deve estar disponível dentro do container, no workflow do Github Actions do projeto você pode fazer isso com:</p>
+<div class="highlight"><pre><span></span><code>-<span class="w"> </span>name:<span class="w"> </span>ETL<span class="w"> </span>pipeline
+<span class="w">  </span>env:<span class="w"> </span>
+<span class="w">    </span>MS365_KEY:<span class="w"> </span><span class="si">${</span><span class="p">{ secrets.MS365_KEY </span><span class="si">}</span><span class="o">}</span>
+<span class="w">  </span>run:<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">MS365_KEY</span><span class="o">=</span><span class="nv">$MS365_KEY</span><span class="w"> </span>--rm<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>,target<span class="o">=</span>/project<span class="w"> </span>fjuniorr/<span class="si">${</span><span class="p">{ github.event.repository.name </span><span class="si">}</span><span class="o">}</span><span class="w"> </span>make<span class="w"> </span>all
+</code></pre></div>
+<h2 id="utilizacao-do-token-para-acesso-ao-sharepoint">Utilização do Token para acesso ao Sharepoint</h2>
+<p>Após todo o processo descrito até aqui, o token pode ser utilizado para autenticação e acesso a recursos no sharepoint, como no script R exemplo a seguir:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">Microsoft365R</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">cyphr</span><span class="p">)</span>
+
+<span class="n">k_env</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Sys.getenv</span><span class="p">(</span><span class="s">&quot;MS365_KEY&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># Chave privada obtido via secret vindo do Gitgub Actions</span>
+
+<span class="c1"># decriptar token</span>
+<span class="n">key</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cyphr</span><span class="o">::</span><span class="nf">key_sodium</span><span class="p">(</span><span class="n">sodium</span><span class="o">::</span><span class="nf">hex2bin</span><span class="p">(</span><span class="n">k_str</span><span class="p">))</span>
+<span class="n">token</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cyphr</span><span class="o">::</span><span class="nf">decrypt</span><span class="p">(</span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;ms365r.rds&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">key</span><span class="p">)</span>
+
+<span class="c1"># utilizar token descriptado</span>
+<span class="n">site</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">get_sharepoint_site</span><span class="p">(</span><span class="n">site_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://cecad365.sharepoint.com/sites/Splor/&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">token</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">site</span><span class="o">$</span><span class="nf">get_drive</span><span class="p">()</span><span class="o">$</span><span class="nf">list_items</span><span class="p">())</span>
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>
