@@ -15,7 +15,7 @@ all: extract validate transform build check
 requirements:
 	@if [ "$(MAKECMDGOALS)" != "publish" ]; then \
 		echo Checking python packages...; \
-		python scripts/requirements.py; \
+		checks installed-packages; \
 	fi
 
 extract:
