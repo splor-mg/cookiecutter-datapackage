@@ -1,4 +1,4 @@
-.PHONY: all extract validate transform build check publish clean notify
+.PHONY: all requirements extract validate transform build check publish clean notify
 
 include config.mk
 
@@ -8,6 +8,15 @@ RESOURCE_NAMES := $(shell $(PYTHON) main.py resources)
 OUTPUT_FILES := $(addsuffix .csv,$(addprefix data/,$(RESOURCE_NAMES)))
 
 all: extract validate transform build check
+
+%: requirements
+	@true
+
+requirements:
+	@if [ "$(MAKECMDGOALS)" != "publish" ]; then \
+		echo Checking python packages...; \
+		checks installed-packages; \
+	fi
 
 extract:
 	$(foreach resource_name, $(RESOURCE_NAMES),$(PYTHON) main.py extract $(resource_name) &&) true
