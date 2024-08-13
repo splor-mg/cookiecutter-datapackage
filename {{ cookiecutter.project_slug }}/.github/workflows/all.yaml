@@ -2,12 +2,11 @@ name: Updated
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron:  '13 8 * * 1-5'
 
 jobs:
   all:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
