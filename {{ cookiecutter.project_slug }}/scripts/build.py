@@ -31,7 +31,7 @@ def build_package(descriptor: str = 'datapackage.yaml'):
     }
 
     target = Package.from_descriptor(target_descriptor)
-    target.custom['updated_at'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    target.custom['updated_at'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
     
     for resource in target.resources:
         resource.infer(stats=True)
