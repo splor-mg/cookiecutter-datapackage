@@ -23,16 +23,16 @@ jobs:
       with:
         context: .
         push: true
-        tags: fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %}:latest
-        cache-from: type=registry,ref=fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %}:latest
+        tags: splormg/{% raw %}${{ github.event.repository.name }}{% endraw %}:latest
+        cache-from: type=registry,ref=splormg/{% raw %}${{ github.event.repository.name }}{% endraw %}:latest
         cache-to: type=inline
     - name: ETL pipeline
-      run: docker run --rm --mount type=bind,source=${PWD},target=/project fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %} make all
+      run: docker run --rm --mount type=bind,source=${PWD},target=/project splormg/{% raw %}${{ github.event.repository.name }}{% endraw %} make all
     - name: ETL pipeline notification
       env:
         GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
       run: |-
-        docker run -e GITHUB_TOKEN=$GITHUB_TOKEN --rm --mount type=bind,source=${PWD},target=/project fjuniorr/{% raw %}${{ github.event.repository.name }}{% endraw %} make notify
+        docker run -e GITHUB_TOKEN=$GITHUB_TOKEN --rm --mount type=bind,source=${PWD},target=/project splormg/{% raw %}${{ github.event.repository.name }}{% endraw %} make notify
     - name: Publish data package
       run: |-
         git config user.name "Automated"
