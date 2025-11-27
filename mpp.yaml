@@ -10,7 +10,7 @@ variables:
     prompt: "Project slug"
     default: "my-project"
 
-  secret_key:
+  secrets:
     type: string
     prompt: "Secret key"
     default: "my-secret-key"
