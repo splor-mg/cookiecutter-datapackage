@@ -5,11 +5,15 @@ variables:
     default: "my-project"
   
 
-  cookiecutter.project_slug:
+  cookiecutter:
     type: string
     prompt: "Project slug"
     default: "my-project"
 
+  secret_key:
+    type: string
+    prompt: "Secret key"
+    default: "my-secret-key"
 
   project_description:
     type: string
