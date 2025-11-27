@@ -1,9 +1,16 @@
 variables:
   project_name:
     type: string
-    prompt: "name_cookiecutter_mpp"
+    prompt: "Project name"
     default: "my-project"
   
+
+  cookiecutter.project_slug:
+    type: string
+    prompt: "Project slug"
+    default: "my-project"
+
+
   project_description:
     type: string
     prompt: "Project description"
